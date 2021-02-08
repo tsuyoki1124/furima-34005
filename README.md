@@ -1,24 +1,62 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+users table
 
-Things you may want to cover:
+| Column                | Type     | Options     | 
+| --------------------- | -------- | ------------|
+| nickname              | string   | null: false |
+| email                 | string   | null: false |
+| password              | string   | null: false |
+| password_confirmation | string   | null: false |
+| last_name_kanji       | string   | null: false |
+| first_name_kanji      | string   | null: false |
+| last_name_kana        | string   | null: false |
+| first_name_kana       | string   | null: false |
 
-* Ruby version
+Association
+- has_many :items
+- has_many :orders
 
-* System dependencies
+items table
 
-* Configuration
+| Column                  | Type       | Options           | 
+| ----------------------- | ---------- | ----------------- |
+| price                   | integer    | null: false       |
+| tittle                  | string     | null: false       |
+| selling_user            | references | foreign_key: true |
+| category                | string     | null: false       |
+| condition               | string     | null: false       |
+| delivery_fee            | string     | null: false       |
+| shipping_address        | string     | null: false       |
+| estimated_shipping_date | string     | null: false       |
 
-* Database creation
+Association
+- belongs_to :user
+- belongs_to :order
 
-* Database initialization
+orders table
 
-* How to run the test suite
+| column  | Type       | Options           |
+| ------- | -----------| ----------------- |
+| user_id | references | foreign_key: true |
+| token   | references | foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
-* Deployment instructions
+addresses table
 
-* ...
+| column       | Type       | Options           |
+| ------------ | -----------| ----------------- |
+| user_id      | references | foreign_key: true |
+| postalcode   | integer    | null: false       |
+| prefecture   | string     | null: false       |
+| town         | string     | null: false       |
+| address      | string     | null: false       |
+| building     | string     | null: false       |
+| phone_number | integer    | null: false       |
+
+Association
+- belongs_to :order
