@@ -1,24 +1,63 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+users table
 
-Things you may want to cover:
+| Column                | Type     | Options                   | 
+| --------------------- | -------- | ------------------------- |
+| nickname              | string   | null: false               |
+| email                 | string   | null: false, unique: true |
+| encrypted_password    | string   | null: false               |
+| last_name             | string   | null: false               |
+| first_name            | string   | null: false               |
+| last_name_kana        | string   | null: false               |
+| first_name_kana       | string   | null: false               |
+| birthday              | date     | null: false               |
 
-* Ruby version
+Association
+- has_many :items
+- has_many :orders
 
-* System dependencies
+items table
 
-* Configuration
+| Column                     | Type       | Options           | 
+| -------------------------- | ---------- | ----------------- |
+| price                      | integer    | null: false       |
+| title                     | string     | null: false       |
+| text                       | text       | null: false       |
+| user                       | references | foreign_key: true |
+| category_id                | integer    | null: false       |  #active hashを使用するため末尾に_id、integer型
+| condition_id               | integer    | null: false       |
+| delivery_fee_id            | integer    | null: false       |
+| prefecture_id              | integer    | null: false       |
+| estimated_shipping_date_id | integer    | null: false       |
 
-* Database creation
+Association
+- belongs_to :user
+- has_one :order
 
-* Database initialization
+orders table
 
-* How to run the test suite
+| column  | Type       | Options           |
+| ------- | -----------| ----------------- |
+| user    | references | foreign_key: true | #users tableを参照する
+| item    | references | foreign_key: true | #items tableを参照する
 
-* Services (job queues, cache servers, search engines, etc.)
+Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
-* Deployment instructions
+addresses table
 
-* ...
+| column        | Type       | Options           |
+| ------------- | -----------| ----------------- |
+| order         | refernces  | foreign_key: true | 　#orders tableを参照
+| postalcode    | string     | null: false       |  #0から始まるとintegerでは補完できない
+| prefecture_id | integer    | null: false       |
+| town          | string     | null: false       |
+| address       | string     | null: false       |
+| building      | string     |                   |  #任意なので制約はいらない
+| phone_number  | string     | null: false       |  #0から始まるとintegerでは補完できない
+
+Association
+- belongs_to :order
