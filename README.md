@@ -26,7 +26,7 @@ items table
 | tittle                     | string     | null: false       |
 | text                       | text       | null: false       |
 | user                       | references | foreign_key: true |
-| category_id                | integer    | null: false       |  #active hashを使用するため、integer
+| category_id                | integer    | null: false       |  #active hashを使用するため末尾に_id、integer型
 | condition_id               | integer    | null: false       |
 | delivery_fee_id            | integer    | null: false       |
 | prefecture_id              | integer    | null: false       |
@@ -52,6 +52,7 @@ addresses table
 
 | column        | Type       | Options           |
 | ------------- | -----------| ----------------- |
+| order         | refernces  | foreign_key: true | 　#orders tableを参照
 | postalcode    | string     | null: false       |  #0から始まるとintegerでは補完できない
 | prefecture_id | integer    | null: false       |
 | town          | string     | null: false       |
