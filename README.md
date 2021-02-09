@@ -22,7 +22,7 @@ items table
 | Column                     | Type       | Options           | 
 | -------------------------- | ---------- | ----------------- |
 | price                      | integer    | null: false       |
-| title                     | string     | null: false       |
+| title                      | string     | null: false       |
 | text                       | text       | null: false       |
 | user                       | references | foreign_key: true |
 | category_id                | integer    | null: false       |  #active hashを使用するため末尾に_id、integer型
