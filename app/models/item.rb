@@ -4,6 +4,12 @@ class Item < ApplicationRecord
   validates :category_id, numericality: { other_than: 0 }
   validates :delivery_fee_id, numericality: { other_than: 0 }
   validates :estimated_shipping_date_id, numericality: { other_than: 0 }
+  validates :image, presence: true
+  validates :title, presence: true
+  validates :price, presence: true
+  validates :text, presence: true
+  
+
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
