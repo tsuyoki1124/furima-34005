@@ -32,31 +32,31 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
-      it 'prefecture_idが空だと保存できないこと' do
+      it 'prefecture_idが0だと保存できないこと' do
         @item.prefecture_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include('Prefecture is not a number')
       end
 
-      it 'condition_idが空だと保存できないこと' do
+      it 'condition_idが0だと保存できないこと' do
         @item.condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include('Condition is not a number')
       end
 
-      it 'category_idが空だと保存できないこと' do
+      it 'category_idが0だと保存できないこと' do
         @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include('Category is not a number')
       end
 
-      it 'delivery_fee_idが空だと保存できないこと' do
+      it 'delivery_fee_idが0だと保存できないこと' do
         @item.delivery_fee_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery fee is not a number')
       end
 
-      it 'estimated_shipping_date_idが空だと保存できないこと' do
+      it 'estimated_shipping_date_idが0だと保存できないこと' do
         @item.estimated_shipping_date_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include('Estimated shipping date is not a number')
@@ -90,6 +90,18 @@ RSpec.describe Item, type: :model do
         @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('User must exist')
+      end
+      
+      it 'priceは半角英数字混合では保存できないこと' do
+        @item.price = 'aaa111'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it 'priceは半角英字では保存できないこと' do
+        @item.price = 'aaaaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
     end
   end
