@@ -33,33 +33,33 @@ RSpec.describe Item, type: :model do
       end
 
       it 'prefecture_idが0だと保存できないこと' do
-        @item.prefecture_id = ''
+        @item.prefecture_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Prefecture is not a number')
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
       end
 
       it 'condition_idが0だと保存できないこと' do
-        @item.condition_id = ''
+        @item.condition_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Condition is not a number')
+        expect(@item.errors.full_messages).to include("Condition must be other than 0")
       end
 
       it 'category_idが0だと保存できないこと' do
-        @item.category_id = ''
+        @item.category_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category is not a number')
+        expect(@item.errors.full_messages).to include("Category must be other than 0")
       end
 
       it 'delivery_fee_idが0だと保存できないこと' do
-        @item.delivery_fee_id = ''
+        @item.delivery_fee_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery fee is not a number')
+        expect(@item.errors.full_messages).to include("Delivery fee must be other than 0")
       end
 
       it 'estimated_shipping_date_idが0だと保存できないこと' do
-        @item.estimated_shipping_date_id = ''
+        @item.estimated_shipping_date_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Estimated shipping date is not a number')
+        expect(@item.errors.full_messages).to include("Estimated shipping date must be other than 0")
       end
 
       it 'imageが空だと保存できないこと' do
