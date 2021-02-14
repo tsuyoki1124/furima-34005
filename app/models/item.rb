@@ -6,10 +6,9 @@ class Item < ApplicationRecord
   validates :estimated_shipping_date_id, numericality: { other_than: 0 }
   validates :image, presence: true
   validates :title, presence: true
-  validates :price, format: {with: /\A[0-9]+\z/, allow_blank: true }, numericality: { only_integer: true,greater_than: 300, less_than: 9999999}
+  validates :price, format: { with: /\A[0-9]+\z/, allow_blank: true },
+                    numericality: { only_integer: true, greater_than: 300, less_than: 9_999_999 }
   validates :text, presence: true
-  
-
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
@@ -20,5 +19,4 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
-
 end
