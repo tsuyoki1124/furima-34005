@@ -1,14 +1,21 @@
 class Item < ApplicationRecord
-  validates :prefecture_id, numericality: { other_than: 0 }
-  validates :condition_id, numericality: { other_than: 0 }
-  validates :category_id, numericality: { other_than: 0 }
-  validates :delivery_fee_id, numericality: { other_than: 0 }
-  validates :estimated_shipping_date_id, numericality: { other_than: 0 }
-  validates :image, presence: true
-  validates :title, presence: true
+  with_options presence: true, numericality: { other_than: 0 } do
+    validates :prefecture_id
+    validates :condition_id
+    validates :category_id
+    validates :delivery_fee_id
+    validates :estimated_shipping_date_id
+  end
+
+  with_options presence: true do
+    validates :image
+    validates :text
+    validates :title
+  end
+  
   validates :price, format: { with: /\A[0-9]+\z/, allow_blank: true },
                     numericality: { only_integer: true, greater_than: 300, less_than: 9_999_999 }
-  validates :text, presence: true
+ 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
