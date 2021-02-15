@@ -35,31 +35,31 @@ RSpec.describe Item, type: :model do
       it 'prefecture_idが0だと保存できないこと' do
         @item.prefecture_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
       end
 
       it 'condition_idが0だと保存できないこと' do
         @item.condition_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition must be other than 0")
+        expect(@item.errors.full_messages).to include('Condition must be other than 0')
       end
 
       it 'category_idが0だと保存できないこと' do
         @item.category_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 0")
+        expect(@item.errors.full_messages).to include('Category must be other than 0')
       end
 
       it 'delivery_fee_idが0だと保存できないこと' do
         @item.delivery_fee_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee must be other than 0")
+        expect(@item.errors.full_messages).to include('Delivery fee must be other than 0')
       end
 
       it 'estimated_shipping_date_idが0だと保存できないこと' do
         @item.estimated_shipping_date_id = '0'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Estimated shipping date must be other than 0")
+        expect(@item.errors.full_messages).to include('Estimated shipping date must be other than 0')
       end
 
       it 'imageが空だと保存できないこと' do
@@ -91,17 +91,17 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('User must exist')
       end
-      
+
       it 'priceは半角英数字混合では保存できないこと' do
         @item.price = 'aaa111'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it 'priceは半角英字では保存できないこと' do
         @item.price = 'aaaaaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
   end

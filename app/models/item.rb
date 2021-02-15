@@ -12,10 +12,9 @@ class Item < ApplicationRecord
     validates :text
     validates :title
   end
-  
+
   validates :price, format: { with: /\A[0-9]+\z/, allow_blank: true },
                     numericality: { only_integer: true, greater_than: 300, less_than: 9_999_999 }
- 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
