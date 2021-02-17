@@ -2,17 +2,14 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :move_to_signin
   before_action :move_to_index
-  
+  before_action :item
 
   def index
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
 
   def create
-   
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       pay_item
@@ -26,6 +23,11 @@ class OrdersController < ApplicationController
 
 
   private
+
+  def item
+    @item = Item.find(params[:item_id])
+  end
+
   def order_params
     params.require(:order_address).permit(:token, :postalcode, :prefecture_id, 
                   :town, :address, :building, 
@@ -54,10 +56,4 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
   end
-
-
-
-
-    
-
 end
