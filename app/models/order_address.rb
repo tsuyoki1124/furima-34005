@@ -3,11 +3,11 @@ class OrderAddress
   attr_accessor :postalcode, :prefecture_id, :town, :address, :building, :phone_number, :user_id, :item_id
 
   with_options presence: true do
-    validates :postalcode, format: {with: /\A[0-9]{7}\z/, message: "is invalid."}
+    validates :postalcode, format: {with: /\A\d{3}[-]\d{4}\z/, message: "is invalid.", allow_blank: true}
     validates :prefecture_id, numericality: { other_than: 0 }
-    validates :town, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid."}
+    validates :town, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid.", allow_blank: true}
     validates :address
-    validates :phone_number
+    validates :phone_number, format: {with: /\A[0-9]{11}\z/}
     validates :user_id
 
   end
