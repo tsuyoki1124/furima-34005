@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
   before_action :item
-  before_action :move_to_signin
   before_action :move_to_index
 
   def index
@@ -30,10 +29,6 @@ class OrdersController < ApplicationController
     params.require(:order_address).permit(:token, :postalcode, :prefecture_id,
                                           :town, :address, :building,
                                           :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
-  end
-
-  def move_to_signin
-    redirect_to new_user_session_path unless user_signed_in? && current_user.id != @item.user.id
   end
 
   def pay_item
