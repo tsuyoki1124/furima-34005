@@ -7,7 +7,7 @@ class OrderAddress
     validates :prefecture_id, numericality: { other_than: 0 }
     validates :town, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'is invalid.', allow_blank: true }
     validates :address
-    validates :phone_number, format: { with: /\A[0-9]{11}\z/, allow_blank: true }
+    validates :phone_number, format: { with: /\A\d{10}$|^\d{11}\z/, allow_blank: true }
     validates :user_id
     validates :item_id
     validates :token

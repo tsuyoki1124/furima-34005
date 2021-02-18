@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
+  before_action :item
   before_action :move_to_signin
   before_action :move_to_index
-  before_action :item
 
   def index
     @order_address = OrderAddress.new
@@ -33,7 +33,6 @@ class OrdersController < ApplicationController
   end
 
   def move_to_signin
-    @item = Item.find(params[:item_id])
     redirect_to new_user_session_path unless user_signed_in? && current_user.id != @item.user.id
   end
 
@@ -47,7 +46,6 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    @item = Item.find(params[:item_id])
     redirect_to root_path if @item.order.present?
   end
 end
