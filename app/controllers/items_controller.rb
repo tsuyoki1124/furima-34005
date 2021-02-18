@@ -22,24 +22,23 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    
   end
 
   def edit
   end
 
   def update
-      if @item.update(item_params)
-         redirect_to item_path(@item.id)
-      else
-         render :edit
-      end
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
     if current_user.id == @item.user.id
-       @item.destroy
-       redirect_to root_path
+      @item.destroy
+      redirect_to root_path
     else
       render :show
     end
@@ -54,16 +53,11 @@ class ItemsController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:id])
-    unless current_user.id == @item.user.id
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless current_user.id == @item.user.id
   end
 
   def edit_move_to_index
     @item = Item.find(params[:id])
-    if @item.order.present?
-      redirect_to action: :index
-    end
+    redirect_to action: :index if @item.order.present?
   end
-
 end
