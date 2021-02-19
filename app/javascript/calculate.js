@@ -1,6 +1,4 @@
 window.addEventListener('load', function(){
-
-
   const cal = document.getElementById("item-price");
   cal.addEventListener("keyup", (e)=> {
   const fee = eval(cal.value * 0.1);
